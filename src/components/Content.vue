@@ -1,22 +1,37 @@
 
 <script>
-    import PacketService from '@/services/packet.service.js';
+    import PacketService from '../services/packet.service';
 
-    export default {
+    export default {  
         props: {
-            packets: { type: Array, default: [] }
-        },  
+            src: {type: String, default: ''},
+            class: { type: String, default: ''}
+        },
+        data(){
+            return {
+                packets: []
+            }
+        },
+        emits: ["update:activeIndex"],
         methods: {
-            async retrieveContacts() {
+            updateIndex(index){
+                this.$emit("update:activeIndex", index)
+            },
+            async retrievePacket() {
                 try {
                     this.packets = await PacketService.getAll();
-                }catch(error) {
+                }catch(error){
                     console.log(error);
                 }
             },
-            refreshList() {
-                this.retrieveContacts();
+
+            refreshList(){
+                this.retrievePacket();
             },
+
+            goToDetails() {
+                this.$route.push({name: 'details'});
+            }
         },
         mounted() {
             this.refreshList();
@@ -28,18 +43,15 @@
 <template>
     <div class="content">
     <div class="content-section">
-
-        <div 
-            class="packages__list"
-            v-for="(packet, index) in packets"
-            :key="packet._id"
-        
-        >
-            <div class="col-3 packages__item">
+        <div class="packages__list" >
+            <div class="col-3 packages__item"
+                v-for="(packet, index) in packets"
+                :key="packet._id"
+            >
                 <div class="packages__item-img">
-                    <img src="{{packet.img}}" alt="" class="packages__item-img-pic">
-                    <a href="" class="packages__item-img-icon {{packet.colorIcon}}">
-                        <img src="{{packet.logo}}" alt="">
+                    <img :src="'src/assets' + packet.img" alt="" class="packages__item-img-pic">
+                    <a href="" class="packages__item-img-icon" :class="(packet.colorBtn)">
+                        <img :src="'src/assets' + packet.logo" alt="">
                     </a>
                 </div>
                 <div class="packages__item-content">
@@ -53,7 +65,7 @@
                     <div class="packages__item-price">
                         <p class="packages__item-price-name">
                             {{packet.type}}
-                            <button class="packages__item-price-btn {{packet.colorBtn}}">+ 1</button>
+                            <button class="packages__item-price-btn" :class="(packet.colorBtn)">+ 1</button>
                         </p>
                         <span class="packages__item-price-money">
                             <span class="packages__item-price-old">{{packet.oldPrice}}</span>
@@ -62,7 +74,10 @@
                     </div>
                     <div class="packages__item-description">
                         <p class="packages__item-description-p">{{packet.description}}</p>
-                        <a href="/packages/{{packet.slug}}" class="packages__item-description-btn {{packet.colorBtn}}">DETAILS</a>
+                            <a :href="'/packet/' + packet._id"  
+                                class="packages__item-description-btn"
+                                :class="(packet.colorBtn)"
+                            >DETAILS</a>
                     </div>
                 </div>
             </div>

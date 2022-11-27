@@ -1,7 +1,7 @@
 import createApiClient from './api.service'
 
 class PacketService {
-    constructor(baseURL = '/') {
+    constructor(baseURL = '/api/packets') {
         this.api = createApiClient(baseURL);
     }
 
@@ -22,7 +22,7 @@ class PacketService {
     }
 
     async update(id, data) {
-        return (await this.api.put(`/${id}`)).data;
+        return (await this.api.put(`/${id}`, data)).data;
     }
 
     async delete(id) {
