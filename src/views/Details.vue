@@ -5,6 +5,7 @@
     />
     <Content 
         :packet="packet"
+        :contact="contact"
     />
 </template>
 
@@ -27,7 +28,8 @@
         },
         data() {
             return {
-                packet: null
+                packet: null,
+                contact: {}
             }
         },
         methods: {

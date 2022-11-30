@@ -32,7 +32,7 @@
         },
         computed: {
             style () {
-                return 'background-image: url(src/assets' + this.packet.img + ');';
+                return 'background-image: url(src/assets' + this.packet.img + ')';
             }
         },
     }

@@ -44,30 +44,48 @@
         </div>
         <div class="feedback-section col-lg-4">
             <div class="feedback__name" :class="packetLocal.colorBtn"> {{packetLocal.newPrice}}</div>
-            <form method="post" action="" class="feedback__input">
-                <div class="feedback__input-container">
-                    <input type="text" class="feedback__input-info" placeholder="Surname" name="surname">
-                    <input type="text" class="feedback__input-info" placeholder="Name" name="name">
-                    <input type="email" placeholder="Email" name="email" class="feedback__input-info">
-                    <input type="text" placeholder="Phone" name="phone" class="feedback__input-info">
-                    <textarea name="message" id="" cols="30" rows="10" placeholder="Message" class="feedback__input-info"></textarea>
+
+            <form @submit="createContact(contactLocal)" class="feedback__input">
+                <div class="feedback__input-container" :contact="contactLocal">
+                    <input type="text" class="feedback__input-info" placeholder="Surname" v-model="contactLocal.surname">
+                    <input type="text" class="feedback__input-info" placeholder="Name" v-model="contactLocal.name">
+                    <input type="email" placeholder="Email"  class="feedback__input-info" v-model="contactLocal.email">
+                    <input type="text" placeholder="Phone" class="feedback__input-info" v-model="contactLocal.phone">
+                    <input type="text" hidden v-model="packetLocal._id">
+                    <textarea id="" cols="30" rows="10" placeholder="Message" class="feedback__input-info" 
+                        v-model="contactLocal.message"></textarea>
                 </div>
-                <button class="feedback__input-btn" :class="packetLocal.colorBtn">Send now</button>
+                <button class="feedback__input-btn" 
+                    :class="packetLocal.colorBtn"
+                    type="submit"    
+                >Send now</button>
             </form>
         </div>
     </div>
-
 </template>
 
 <script>
+    import ContactService from '../../services/contact.service';
+
     export default {
         props: {
-            packet: { type: Object, require: true}
+            packet: { type: Object, require: true},
+            contact: { type: Object, require: true }
         },
         data() {
             return {
-                packetLocal: this.packet
+                packetLocal: this.packet,
+                contactLocal: this.contact
             }
-        }
+        },
+        methods:{
+            async createContact (data) {
+                try {
+                    await ContactService.create(data);
+                }catch(error) {
+                    console.log(error);
+                }
+            },
+        },
     }
 </script>
