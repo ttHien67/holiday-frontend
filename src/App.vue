@@ -1,8 +1,8 @@
 <script>
-  import Packet from "@/components/Packets.vue"
+  import App from "@/views/App.vue"
   export default {
     components: {
-      Packet,
+      App
     }
   }
 </script>
@@ -17,7 +17,6 @@
 
 <template>
   <div id="app">
-    <Packet />
-
+    <App/>
   </div>
 </template>

@@ -1,8 +1,8 @@
 import { createWebHashHistory, createRouter } from "vue-router";
-import Packets from "@/components/Packets.vue";
-import Details from "@/components/details/Details.vue";
+import Packets from "@/views/Home.vue";
 
 const routes = [
+    
     {
         path: '/',
         name: 'packets',
@@ -10,8 +10,8 @@ const routes = [
     },
     {
         path: '/packet/:id',
-        name: 'details',
-        component: Details,
+        name: 'packet.details',
+        component: () => import("@/views/Details.vue"),
         props: true
     },
 ];

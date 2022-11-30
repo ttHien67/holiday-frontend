@@ -74,10 +74,14 @@
                     </div>
                     <div class="packages__item-description">
                         <p class="packages__item-description-p">{{packet.description}}</p>
-                            <a :href="'/packet/' + packet._id"  
-                                class="packages__item-description-btn"
-                                :class="(packet.colorBtn)"
-                            >DETAILS</a>
+                            <router-link
+                                :to="{
+                                    name: 'packet.details',
+                                    params: { id: packet._id}
+                                }"
+                            >
+                                <button class="packages__item-description-btn" :class="(packet.colorBtn)">DETAILS</button>
+                            </router-link>
                     </div>
                 </div>
             </div>

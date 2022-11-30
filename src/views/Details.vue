@@ -1,0 +1,48 @@
+<template>
+
+    <Slider 
+        :packet="packet"
+    />
+    <Content 
+        :packet="packet"
+    />
+</template>
+
+<style>
+    @import '../assets/details.css';
+</style>
+
+<script>
+    import Slider from '@/components/details/Slider.vue';
+    import Content from '@/components/details/Content.vue';
+    import PacketService from '../services/packet.service';
+
+    export default {
+        components: {
+            Slider,
+            Content
+        },
+        props: {
+            id: {type: String, require: true},
+        },
+        data() {
+            return {
+                packet: null
+            }
+        },
+        methods: {
+            async getPacket(id) {
+                try{ 
+                    this.packet = await PacketService.get(id);
+                }catch (error) {
+                    console.log(error);
+                }
+            },
+        },
+        created() {
+            this.getPacket(this.id);
+        }
+    }
+    
+</script>
+
