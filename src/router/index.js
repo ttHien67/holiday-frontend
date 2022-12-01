@@ -14,6 +14,19 @@ const routes = [
         component: () => import("@/views/Details.vue"),
         props: true
     },
+    {
+        path: '/packet/stored',
+        name: 'packet.stored',
+        component: () => import("@/views/Packet_manage.vue"),
+        props: true
+    },
+    {
+        path: '/packet/edit/:id',
+        name: 'packet.edit',
+        component: () => import("@/views/Packet_edit.vue"),
+        props: true
+
+    },
 ];
 
 const router = createRouter({
