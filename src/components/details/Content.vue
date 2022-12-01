@@ -1,5 +1,5 @@
 <template>
-    <div class="content content-section">
+    <div class="content content-section" v-if="packetLocal">
         <div class="introduce col-lg-8">
             <div class="introduce__type">
                 <div class="introduce__type-item">
@@ -42,7 +42,7 @@
 
             </div>
         </div>
-        <div class="feedback-section col-lg-4">
+        <div class="feedback-section col-lg-4" v-if="packetLocal">
             <div class="feedback__name" :class="packetLocal.colorBtn"> {{packetLocal.newPrice}}</div>
 
             <form @submit="createContact(contactLocal)" class="feedback__input">
@@ -51,7 +51,7 @@
                     <input type="text" class="feedback__input-info" placeholder="Name" v-model="contactLocal.name">
                     <input type="email" placeholder="Email"  class="feedback__input-info" v-model="contactLocal.email">
                     <input type="text" placeholder="Phone" class="feedback__input-info" v-model="contactLocal.phone">
-                    <input type="text" hidden v-model="packetLocal._id">
+                    <input type="text" hidden :value="packetLocal._id">
                     <textarea id="" cols="30" rows="10" placeholder="Message" class="feedback__input-info" 
                         v-model="contactLocal.message"></textarea>
                 </div>

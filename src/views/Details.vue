@@ -1,5 +1,4 @@
 <template>
-
     <Slider 
         :packet="packet"
     />
@@ -7,6 +6,7 @@
         :packet="packet"
         :contact="contact"
     />
+    <Footer />
 </template>
 
 <style>
@@ -15,13 +15,17 @@
 
 <script>
     import Slider from '@/components/details/Slider.vue';
+    import Header from '@/components/Header.vue';
+    import Footer from '@/components/Footer.vue';
     import Content from '@/components/details/Content.vue';
     import PacketService from '../services/packet.service';
 
     export default {
         components: {
             Slider,
-            Content
+            Content,
+            Header,
+            Footer
         },
         props: {
             id: {type: String, require: true},

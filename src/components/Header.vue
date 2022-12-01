@@ -134,5 +134,44 @@
         </div>
     </header>
 
+    <input type="checkbox" name="" class="open--close" id="open--close" hidden>
+    <label for="open--close" class="overlay"></label>
+    <div class="navigation">
+        <div class="navigation__container">
+            <label for="open--close" class="btn-close ti-close"></label>
+            
+            <div class="navigation__packages">
+                <h1 class="nav__packages-title">
+                    <u>
+                        OPTION
+                    </u>
+                </h1>
+                <div class="nav__packages-item">
+                    <i class="ti-settings nav__packages__item-img-pic" style="font-size: 30px"></i>
+                    <a href="/#/packet/stored" class="nav__packages-item-info">
+                        <h1 class="nav__packages-item-info-name">Manage packets</h1>
+                    </a>
+                </div>
+                <div class="" style="border-bottom: 2px; width: 100%; background-color: #000; height: 2px"></div>
+                <div class="nav__packages-item">
+                    <i class="ti-headphone-alt nav__packages__item-img-pic" style="font-size: 30px"></i>
+                    <a href="/#/contacts/stored" class="nav__packages-item-info">
+                        <h1 class="nav__packages-item-info-name">Manage contacts</h1>
+                    </a>
+                </div>
+                <div class="" style="border-bottom: 2px; width: 100%; background-color: #000; height: 2px"></div>
+                <div class="nav__packages-item">
+                    <i class="ti-back-right nav__packages__item-img-pic" style="font-size: 30px"></i>
+                    <a href="" class="nav__packages-item-info">
+                        <h1 class="nav__packages-item-info-name">Log out</h1>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 </template>
+
 

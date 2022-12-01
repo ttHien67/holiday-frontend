@@ -1,17 +1,12 @@
 <template>
     
     <div style="margin: 0 20px">
-        <h1 class="title text-success" style="text-align: center; margin-top:50px">Manage Packages</h1>
+        <h1 class="title text-success" style="text-align: center; margin-top:50px">Manage Packets</h1>
 
         <div class="d-flex justify-content-between">
-        <a href="create" type="button" class="btn btn-outline-primary" 
+        <a href="/#/packet/add" type="button" class="btn btn-outline-primary" 
             style="margin-left: 50px; min-width: 100px">
             Add
-        </a>
-
-        <a href="/packages/trash" type="button" class="btn btn-outline-primary" 
-            style="margin-right: 50px; min-width: 100px">
-            Trash
         </a>
         </div>
 
@@ -38,10 +33,10 @@
             v-for="(packet, index) in packets"
             :key="packet._id"
         >
-            
+            <td></td>
             <td><img :src="'src/assets' + packet.img" alt="" style="width: 100px"></td>
             <td style="background-color: #000;">
-            <img :src="('src/assets' + packet.logo)" alt="" style="width: 100px">
+                <img :src="('src/assets' + packet.logo)" alt="" style="width: 100px">
             </td>
             <td>{{packet.title}}</td>
             <td>{{packet.location}}</td>
@@ -57,6 +52,9 @@
                 >
                     Delete
                 </a>
+                
+            </td>
+            <td>
                 <router-link
                     :to="{
                         name: 'packet.edit',
@@ -82,23 +80,7 @@
     <form action="" id="form-delete-packet" method="POST"></form>
 
     <div class="modal" tabindex="-1" role="dialog" id="confirm-delete-modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Remove this packet</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <p>Do you want to remove this packet? </p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="delete-btn">Yes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        </div>
-        </div>
-    </div>
+    
     </div>
 
 </template>
@@ -110,6 +92,7 @@
 
 <script>
     import PacketService from '../services/packet.service';
+    import "bootstrap/dist/css/bootstrap.min.css";
 
     export default {  
         props: {
